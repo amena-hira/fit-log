@@ -1,15 +1,27 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import { LuCalendarPlus2 } from "react-icons/lu";
-import { FaRegBookmark } from "react-icons/fa";
 import PlanButton from '@/components/workoutDetails/PlanButton';
 import SaveButton from '@/components/workoutDetails/SaveButton';
+import { toast } from 'react-toastify';
+import ErrorCard from '@/components/shared/ErrorCard';
 
 const WorkoutDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const response = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`)
-    const workData = await response.json()
+    let workData = {};
+    try {
+        const response = await fetch(
+            `NEXT_PUBLIC_SERVER_BASE_URL/api/fitlog/${id}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch workout: ${response.status}`);
+        }
+
+        workData = await response.json();
+    } catch (error) {
+        toast.error(`${error.message} occurred for ID ${id}!`);
+        return <ErrorCard/>;
+    }
     return (
         <div className='py-10'>
             <div className='container mx-auto p-2 flex flex-col lg:flex-row  justify-around  gap-10'>

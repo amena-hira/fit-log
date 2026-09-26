@@ -1,9 +1,11 @@
 import { workoutContext } from '@/context/WorkoutContext';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useContext } from 'react';
 import { FaCheck, FaRegClock, FaRegStar } from 'react-icons/fa';
 import { LiaBurnSolid } from 'react-icons/lia';
 import { RxCross1 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 
 const ListWorkoutCard = ({ workout, selectedTab }) => {
     const { setPlans, setSaved } = useContext(workoutContext);
@@ -17,6 +19,7 @@ const ListWorkoutCard = ({ workout, selectedTab }) => {
                 prevSaved.filter((save) => save.id !== workout.id)
             );
         }
+        toast.error(`${workout.name.toUpperCase()} is removed from ${selectedTab} workout list!`)
     };
     return (
         <div>
@@ -47,7 +50,7 @@ const ListWorkoutCard = ({ workout, selectedTab }) => {
 
                 </div>
                 <div className='flex items-center gap-3'>
-                    <button className="btn btn-outline border border-[#374151] rounded-full">View Details</button>
+                    <Link href={`/workouts/${workout.id}`} className="btn btn-outline border border-[#374151] rounded-full">View Details</Link>
                     {
                         selectedTab === 'plan' && <button className="btn btn-outline border border-custom-primary rounded-full text-black bg-custom-primary"><FaCheck /><span>Mark as Done</span></button>
                     }

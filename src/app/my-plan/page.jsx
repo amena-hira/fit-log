@@ -1,5 +1,6 @@
 'use client'
 import ListWorkoutCard from '@/components/shared/ListWorkoutCard';
+import NotFound from '@/components/shared/NotFound';
 import { workoutContext } from '@/context/WorkoutContext';
 import React, { useContext, useState } from 'react';
 
@@ -8,23 +9,25 @@ const MyPlanPage = () => {
     const [sortBy, setSortBy] = useState("duration")
     const [selectedTab, setSelectedTab] = useState("plan")
     const selectedWorkouts = selectedTab === "plan" ? plans : saved;
+
     const sortWorkouts = (workouts) => {
         const sortedWorkouts = [...workouts]
         if (sortBy === 'duration') {
-            sortedWorkouts.sort((a, b) => b.duration - a.duration)
+            sortedWorkouts.sort((a, b) => parseFloat(b.duration) - parseFloat(a.duration))
         }
         else if (sortBy === 'calories') {
-            sortedWorkouts.sort((a, b) => b.caloriesBurned - a.caloriesBurned)
+            sortedWorkouts.sort((a, b) => parseFloat(b.caloriesBurned) - parseFloat(a.caloriesBurned))
         }
         else if (sortBy === 'rating') {
-            sortedWorkouts.sort((a, b) => b.ratings - a.ratings)
+            sortedWorkouts.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating))
         }
         return sortedWorkouts;
     }
 
     const sortedWorkouts = sortWorkouts(selectedWorkouts)
-    const totalDuration = selectedWorkouts.reduce((sum, workout) => sum + workout.duration, 0);
-    const totalCalories = selectedWorkouts.reduce((sum, workout) => sum + workout.caloriesBurned, 0);
+    console.log(`sorted workouts: ${sortedWorkouts}`)
+    const totalDuration = selectedWorkouts.reduce((sum, workout) => sum + parseInt(workout.duration), 0);
+    const totalCalories = selectedWorkouts.reduce((sum, workout) => sum + parseInt(workout.caloriesBurned), 0);
     return (
         <div className='container mx-auto px-2 my-10 space-y-2'>
             <h2 className='text-3xl font-bold text-white text-center lg:text-left'>MY PLAN</h2>
@@ -79,11 +82,13 @@ const MyPlanPage = () => {
             </div>
             <div className='mt-8 space-y-4'>
                 {
-                    sortedWorkouts.map(workout => {
-                        return (
-                            <ListWorkoutCard key={workout.id} workout={workout} selectedTab={selectedTab}></ListWorkoutCard>
-                        )
-                    })
+                    sortedWorkouts.length === 0 ? (<NotFound />)
+                        :
+                        (sortedWorkouts.map(workout => {
+                            return (
+                                <ListWorkoutCard key={workout.id} workout={workout} selectedTab={selectedTab}></ListWorkoutCard>
+                            )
+                        }))
                 }
 
             </div>

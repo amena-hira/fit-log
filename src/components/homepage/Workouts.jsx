@@ -1,11 +1,10 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 import WorkoutCard from '../shared/WorkoutCard';
 import Link from 'next/link';
 
 const getWorkOuts = async () => {
     try {
-        const response = await fetch('https://api.api-store.workers.dev/api/fitlog')
+        const response = await fetch('NEXT_PUBLIC_SERVER_BASE_URL/api/fitlog')
         if (!response.ok) {
             throw new Error(`Failed to fetch books: ${response.status}`)
         }
@@ -13,7 +12,6 @@ const getWorkOuts = async () => {
         return data
     } catch (error) {
         console.error("Error fetching books:", error);
-        toast.error(`Error fetching books: ${error}`)
         return [];
     }
 }
@@ -27,13 +25,15 @@ const Workouts = async () => {
             <p className='text-custom-secondary text-sm'>Twelve lifts covering every major muscle group.</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-15'>
                 {
-                    workoutsData.map(workout => {
-                        return (
-                            <Link key={workout.id} href={`/workouts/${workout.id}`}>
-                                <WorkoutCard workout={workout}></WorkoutCard>
-                            </Link>
-                        )
-                    })
+                    workoutsData.length === 0 ?
+                        <p className='text-center'>Workouts Not Found</p>
+                        : workoutsData.map(workout => {
+                            return (
+                                <Link key={workout.id} href={`/workouts/${workout.id}`}>
+                                    <WorkoutCard workout={workout}></WorkoutCard>
+                                </Link>
+                            )
+                        })
                 }
             </div>
         </section>
