@@ -24,7 +24,7 @@ const WorkoutDetailsPage = async ({ params }) => {
         <div className='py-10'>
             <div className='container mx-auto p-2 grid grid-cols-1 lg:grid-cols-2 justify-center lg:justify-around gap-10'>
                 <div>
-                    <Image className='h-full w-auto object-cover rounded-2xl' width={400} height={800} loading="eager" src={workData.image} alt={workData.name}></Image>
+                    <Image className='h-full w-auto object-cover rounded-2xl' width={400} height={800} src={workData.image} alt={workData.name}></Image>
                 </div>
                 <div className='space-y-5'>
                     <h2 className='font-bold text-4xl text-white'>{workData.name}</h2>
