@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import { LuCalendarPlus2 } from "react-icons/lu";
 import { FaRegBookmark } from "react-icons/fa";
+import PlanButton from '@/components/workoutDetails/PlanButton';
+import SaveButton from '@/components/workoutDetails/SaveButton';
 
 const WorkoutDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -107,20 +109,22 @@ const WorkoutDetailsPage = async ({ params }) => {
                         }
                     </ol>
                     <div className='flex gap-2'>
-                        <Link
+                        <PlanButton workout={workData}></PlanButton>
+                        <SaveButton workout={workData}></SaveButton>
+                        {/* <Link
                             href="#workouts"
                             className="btn rounded-md bg-custom-primary px-7 text-black"
                         >
                             <LuCalendarPlus2 />
                             <span>Add to today&apos;s plan</span>
-                        </Link>
-                        <Link
+                        </Link> */}
+                        {/* <Link
                             href="#workouts"
                             className="btn rounded-md border border-[#374151] px-7 text-white"
                         >
                             <FaRegBookmark />
                             <span>Save for later</span>
-                        </Link>
+                        </Link> */}
                     </div>
 
                 </div>

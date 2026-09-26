@@ -20,7 +20,7 @@ const getWorkOuts = async () => {
 
 const Workouts = async () => {
     const workoutsData = await getWorkOuts()
-    console.log(workoutsData)
+    // console.log(workoutsData)
     return (
         <section id='workouts' className='container mx-auto p-2 my-10 text-center lg:text-left'>
             <h3 className='text-3xl text-bold text-white'>THE LIBRARY</h3>
