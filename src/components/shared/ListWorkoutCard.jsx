@@ -2,13 +2,15 @@ import { workoutContext } from '@/context/WorkoutContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { FaCheck, FaRegClock, FaRegStar } from 'react-icons/fa';
+import {  FaRegClock, FaRegStar } from 'react-icons/fa';
 import { LiaBurnSolid } from 'react-icons/lia';
 import { RxCross1 } from 'react-icons/rx';
 import { toast } from 'react-toastify';
+import MarkDoneButton from './MarkDoneButton';
 
 const ListWorkoutCard = ({ workout, selectedTab }) => {
     const { setPlans, setSaved } = useContext(workoutContext);
+    
     const handleRemoveWorkout = () => {
         if (selectedTab === 'plan') {
             setPlans((prevPlans) =>
@@ -52,7 +54,7 @@ const ListWorkoutCard = ({ workout, selectedTab }) => {
                 <div className='flex items-center gap-3'>
                     <Link href={`/workouts/${workout.id}`} className="btn btn-outline border border-[#374151] rounded-full">View Details</Link>
                     {
-                        selectedTab === 'plan' && <button className="btn btn-outline border border-custom-primary rounded-full text-black bg-custom-primary"><FaCheck /><span>Mark as Done</span></button>
+                        selectedTab === 'plan' && <MarkDoneButton workout={workout}></MarkDoneButton>
                     }
                     <button onClick={handleRemoveWorkout} className="btn btn-ghost">
                         <RxCross1 />

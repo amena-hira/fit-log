@@ -4,20 +4,35 @@ import React, { useContext } from 'react';
 import { LuCalendarPlus2 } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 
-const PlanButton = ({workout}) => {
-    const {plans, setPlans} = useContext(workoutContext)
-    const addPlans = () =>{
-        const isExist = plans.some((item)=>item.id === workout.id)
+const PlanButton = ({ workout }) => {
+    const { plans, setPlans } = useContext(workoutContext)
+    const addPlans = () => {
+        const isExist = plans.some(
+            (item) => item.id === workout.id
+        );
+
         if (isExist) {
-            toast.error(`${workout.name} is already exist!`)
-            return plans;
+            toast.error(`${workout.name} already exists in today's plan!`);
+            return;
         }
-        toast.success(`${workout.name} is successfully added into plans!`)
-        return setPlans([...plans,workout])
-    }
+
+        const newWorkout = {
+            ...workout,
+            isDone: false,
+        };
+
+        setPlans((prevPlans) => [
+            ...prevPlans,
+            newWorkout,
+        ]);
+
+        toast.success(
+            `${workout.name} successfully added to today's plan!`
+        );
+    };
     return (
         <button
-            onClick={()=>addPlans()}
+            onClick={() => addPlans()}
             className="btn rounded-md bg-custom-primary px-7 text-black"
         >
             <LuCalendarPlus2 />

@@ -2,15 +2,14 @@ import Image from 'next/image';
 import React from 'react';
 import PlanButton from '@/components/workoutDetails/PlanButton';
 import SaveButton from '@/components/workoutDetails/SaveButton';
-import { toast } from 'react-toastify';
-import ErrorCard from '@/components/shared/ErrorCard';
+import NotFound from '@/app/not-found';
 
 const WorkoutDetailsPage = async ({ params }) => {
     const { id } = await params;
     let workData = {};
     try {
         const response = await fetch(
-            `NEXT_PUBLIC_SERVER_BASE_URL/api/fitlog/${id}`
+            `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/fitlog/${id}`
         );
 
         if (!response.ok) {
@@ -19,14 +18,13 @@ const WorkoutDetailsPage = async ({ params }) => {
 
         workData = await response.json();
     } catch (error) {
-        toast.error(`${error.message} occurred for ID ${id}!`);
-        return <ErrorCard/>;
+        return <NotFound/>;
     }
     return (
         <div className='py-10'>
-            <div className='container mx-auto p-2 flex flex-col lg:flex-row  justify-around  gap-10'>
+            <div className='container mx-auto p-2 grid grid-cols-1 lg:grid-cols-2 justify-center lg:justify-around gap-10'>
                 <div>
-                    <Image className='h-full object-cover rounded-2xl' width={500} height={800} src={workData.image} alt={workData.name}></Image>
+                    <Image className='h-full w-auto object-cover rounded-2xl' width={400} height={800} src={workData.image} alt={workData.name}></Image>
                 </div>
                 <div className='space-y-5'>
                     <h2 className='font-bold text-4xl text-white'>{workData.name}</h2>

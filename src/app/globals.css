@@ -8,22 +8,8 @@
   --color-custom-primary: #C2F800;
   --color-custom-secondary: #9CA3AF;
   --color-custom-primary-bg: #1A2312;
+  --font-oswald: var(--font-oswald-next);
 }
 html{
   scroll-behavior: smooth;
 }
-/* @plugin "daisyui/theme" {
-  name: "dark";
-  default: false;
-  prefersdark: true;
-  color-scheme: "dark";
-
-  --color-base-100: #000000;
-  --color-base-200: #0d0f12;
-  --color-base-300: #1c1f26;
-  --color-base-content: #ffffff;
-
-  --color-custom-primary: #C2F800;
-  --color-custom-secondary: #9CA3AF;
-  --color-custom-primary-bg: #1A2312;
-} */

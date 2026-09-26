@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const getWorkOuts = async () => {
     try {
-        const response = await fetch('NEXT_PUBLIC_SERVER_BASE_URL/api/fitlog')
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/fitlog`)
         if (!response.ok) {
             throw new Error(`Failed to fetch books: ${response.status}`)
         }

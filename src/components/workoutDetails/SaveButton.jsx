@@ -2,7 +2,6 @@
 import { workoutContext } from '@/context/WorkoutContext';
 import React, { useContext } from 'react';
 import { FaRegBookmark } from 'react-icons/fa';
-import { LuCalendarPlus2 } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 
 const SaveButton = ({ workout }) => {
