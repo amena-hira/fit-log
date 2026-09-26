@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkoutCard from '../shared/WorkoutCard';
 import Link from 'next/link';
+import NotFound from '@/app/not-found';
 
 const getWorkOuts = async () => {
     try {
@@ -12,7 +13,7 @@ const getWorkOuts = async () => {
         return data
     } catch (error) {
         console.error("Error fetching books:", error);
-        return [];
+        return <NotFound />;
     }
 }
 
@@ -20,8 +21,8 @@ const Workouts = async () => {
     const workoutsData = await getWorkOuts()
     // console.log(workoutsData)
     return (
-        <section id='workouts' className='container mx-auto p-2 my-10 text-center lg:text-left'>
-            <h3 className='text-3xl text-bold text-white'>THE LIBRARY</h3>
+        <section id='library' className='container mx-auto p-2 my-10 text-center lg:text-left'>
+            <h3 className='text-3xl font-bold text-white'>THE LIBRARY</h3>
             <p className='text-custom-secondary text-sm'>Twelve lifts covering every major muscle group.</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-15'>
                 {

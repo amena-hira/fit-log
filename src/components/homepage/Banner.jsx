@@ -2,6 +2,7 @@ import React from 'react';
 import banner from '@/assets/banner.png'
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaArrowDown } from 'react-icons/fa';
 
 const Banner = () => {
     return (
@@ -14,9 +15,10 @@ const Banner = () => {
                     <p className='text-lg text-custom-secondary'>FitLog is a dark, no-nonsense gym companion: pick a lift, lock it <br />
                         into today&apos;s plan, and watch the week&apos;s work add up.</p>
                     <Link
-                        href="#workouts"
+                        href="#library"
                         className="btn rounded-md bg-custom-primary px-7 text-black"
                     >
+                        <FaArrowDown />
                         BROWSE WORKOUTS
                     </Link>
                 </div>

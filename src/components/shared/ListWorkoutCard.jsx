@@ -25,7 +25,7 @@ const ListWorkoutCard = ({ workout, selectedTab }) => {
     };
     return (
         <div>
-            <div className='flex justify-between items-center bg-[#14171E] border border-[#232732] p-4 rounded-2xl'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-0 items-center bg-[#14171E] border border-[#232732] p-4 rounded-2xl'>
                 <div className='flex gap-4 items-center'>
                     <div>
                         <Image src={workout.image} alt={workout.name} height={80} width={144} className='w-36 h-20 object-cover rounded-lg'></Image>
@@ -51,7 +51,7 @@ const ListWorkoutCard = ({ workout, selectedTab }) => {
                     </div>
 
                 </div>
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-3 justify-end'>
                     <Link href={`/workouts/${workout.id}`} className="btn btn-outline border border-[#374151] rounded-full">View Details</Link>
                     {
                         selectedTab === 'plan' && <MarkDoneButton workout={workout}></MarkDoneButton>
