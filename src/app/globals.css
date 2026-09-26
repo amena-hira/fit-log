@@ -9,6 +9,9 @@
   --color-custom-secondary: #9CA3AF;
   --color-custom-primary-bg: #1A2312;
 }
+html{
+  scroll-behavior: smooth;
+}
 /* @plugin "daisyui/theme" {
   name: "dark";
   default: false;

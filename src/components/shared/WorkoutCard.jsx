@@ -8,7 +8,7 @@ const WorkoutCard = ({ workout }) => {
         <div>
             <div className="card bg-[#15171D] border-[#222630] rounded-2xl shadow-sm">
                 <figure>
-                    <Image className='w-full h-48' width={740} height={400} loading='eager' src={workout.image} alt={workout.name}></Image>
+                    <Image className='w-full h-48 object-cover' width={740} height={400} loading='eager' src={workout.image} alt={workout.name}></Image>
                 </figure>
                 <div className="card-body">
                     <div className='flex gap-2'>
