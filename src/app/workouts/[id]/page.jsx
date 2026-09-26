@@ -8,7 +8,7 @@ import SaveButton from '@/components/workoutDetails/SaveButton';
 
 const WorkoutDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const response = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`)
+    const response = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`)
     const workData = await response.json()
     return (
         <div className='py-10'>
@@ -111,20 +111,6 @@ const WorkoutDetailsPage = async ({ params }) => {
                     <div className='flex gap-2'>
                         <PlanButton workout={workData}></PlanButton>
                         <SaveButton workout={workData}></SaveButton>
-                        {/* <Link
-                            href="#workouts"
-                            className="btn rounded-md bg-custom-primary px-7 text-black"
-                        >
-                            <LuCalendarPlus2 />
-                            <span>Add to today&apos;s plan</span>
-                        </Link> */}
-                        {/* <Link
-                            href="#workouts"
-                            className="btn rounded-md border border-[#374151] px-7 text-white"
-                        >
-                            <FaRegBookmark />
-                            <span>Save for later</span>
-                        </Link> */}
                     </div>
 
                 </div>

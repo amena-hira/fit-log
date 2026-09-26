@@ -1,7 +1,10 @@
+"use client";
+import { workoutContext } from '@/context/WorkoutContext';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 
 const Badges = () => {
+    const { plans, saved } = useContext(workoutContext)
     return (
         <>
             <Link
@@ -11,7 +14,7 @@ const Badges = () => {
                 <span>Plan</span>
 
                 <span className="badge h-5 w-5 rounded-full border-none bg-custom-primary text-sm font-semibold text-black">
-                    0
+                    {plans.length}
                 </span>
             </Link>
 
@@ -22,7 +25,7 @@ const Badges = () => {
                 <span>Saved</span>
 
                 <span className="badge h-5 w-5 rounded-full border border-[#2D313B] text-sm bg-transparent text-gray-300">
-                    0
+                    {saved.length}
                 </span>
             </Link>
         </>

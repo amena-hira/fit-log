@@ -11,9 +11,9 @@ const SaveButton = ({ workout }) => {
         const isExist = saved.some((item) => item.id === workout.id)
         if (isExist) {
             toast.error(`${workout.name} is already exist!`)
-            return plans;
+            return saved;
         }
-        toast.success(`${workout.name} is successfully added into plans!`)
+        toast.success(`${workout.name} is successfully added into saved list!`)
         return setSaved([...saved, workout])
     }
     return (
